@@ -108,7 +108,15 @@ button {
 
     position: relative;
 
+    top: 0;
+
+    left: 0;
+
+    right: 0;
+
     z-index: 1000;
+
+    background: transparent;
 
     background:
         rgba(6, 19, 28, 0.94);
@@ -143,13 +151,19 @@ button {
 
 .logo img {
 
-    width: 100%;
+    width: 700px;
 
     max-height: 65px;
+
+    height: auto;
+
+    transform: translateY(100px);
 
     object-fit: contain;
 
     display: block;
+
+
 
 }
 
@@ -311,47 +325,112 @@ main {
 
 
 /* =========================
-   HERO
-========================= */
+    HERO
+ ========================= */
 
 .hero {
-
-    width: min(var(--container),
-            90%);
-
-    min-height: 610px;
-
-    margin: 0 auto;
-
-    padding:
-        70px 0 40px;
+    width: 100%;
+    height: 610px;
+    margin: 0;
+    padding: 0;
 
     display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
 
-    grid-template-columns:
-        0.95fr 1.05fr;
-
-    align-items: center;
-
-    gap: 70px;
+    align-items: stretch;
+    gap: 0;
 
     direction: ltr;
+    overflow: hidden;
+}
+
+
+/* =========================
+   HERO IMAGE
+========================= */
+
+.hero-image {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    z-index: 0;
+
+    overflow: hidden;
+
+    border-radius: 0;
+
+    background: #0b202c;
+
+    box-shadow: none;
 
 }
 
 
-/* HERO CONTENT */
+/* الصورة نفسها */
+
+.hero-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+}
+
+
+/* =========================
+   BLUE AREA OVER IMAGE
+========================= */
+
+.hero-image::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(90deg,
+            rgba(6, 19, 28, 0.05) 35%,
+            rgba(6, 19, 28, 0.18) 55%,
+            rgba(6, 19, 28, 0) 75%);
+
+}
+
+
+/* =========================
+   HERO CONTENT
+========================= */
 
 .hero-content {
+    width: min(600px, 85%);
 
-    direction: rtl;
+    margin: auto;
 
     position: relative;
-
     z-index: 2;
 
+    direction: rtl;
 }
 
+
+/* العنوان */
 
 .hero-content h1 {
 
@@ -371,6 +450,8 @@ main {
 }
 
 
+/* العنوان الأزرق */
+
 .hero-content h2 {
 
     font-size:
@@ -389,11 +470,13 @@ main {
 }
 
 
+/* الوصف */
+
 .hero-description {
 
     max-width: 600px;
 
-    color: var(--text-muted);
+    color: var(--text-light);
 
     font-size: 16px;
 
@@ -441,14 +524,14 @@ main {
     text-align: center;
 
     border:
-        1px solid var(--border);
+        1px solid rgba(255, 255, 255, 0.10);
 
     border-radius: 14px;
 
     background:
-        linear-gradient(145deg,
-            rgba(255, 255, 255, 0.055),
-            rgba(255, 255, 255, 0.015));
+        rgba(6, 19, 28, 0.30);
+
+    backdrop-filter: blur(4px);
 
     transition:
         transform 0.3s ease,
@@ -467,7 +550,7 @@ main {
         rgba(32, 184, 245, 0.35);
 
     background:
-        rgba(32, 184, 245, 0.06);
+        rgba(6, 19, 28, 0.45);
 
 }
 
@@ -493,7 +576,7 @@ main {
     font-size: 21px;
 
     background:
-        rgba(32, 184, 245, 0.09);
+        rgba(32, 184, 245, 0.12);
 
 }
 
@@ -502,7 +585,7 @@ main {
 
     display: block;
 
-    color: var(--text-light);
+    color: var(--white);
 
     font-size: 13px;
 
@@ -569,7 +652,7 @@ main {
         translateY(-3px);
 
     box-shadow:
-        0 15px 35px rgba(32, 184, 245, 0.3);
+        0 15px 35px rgba(32, 184, 245, 0.30);
 
 }
 
@@ -582,7 +665,7 @@ main {
 
     gap: 10px;
 
-    color: var(--text-light);
+    color: var(--white);
 
     font-size: 14px;
 
@@ -627,89 +710,7 @@ main {
     padding-right: 2px;
 
     background:
-        rgba(32, 184, 245, 0.07);
-
-}
-
-
-/* =========================
-   HERO IMAGE
-========================= */
-
-.hero-image {
-
-    height: 510px;
-
-    position: relative;
-
-    direction: rtl;
-
-    border-radius: 28px;
-
-    overflow: hidden;
-
-    background:
-        #0b202c;
-
-    box-shadow:
-        var(--shadow);
-
-}
-
-
-.hero-image::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 1;
-
-    background:
-        linear-gradient(90deg,
-            rgba(6, 19, 28, 0.15),
-            transparent 55%);
-
-    pointer-events: none;
-
-}
-
-
-.hero-image::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 300px;
-
-    height: 300px;
-
-    right: -120px;
-
-    bottom: -140px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(32, 184, 245, 0.12);
-
-    filter: blur(60px);
-
-}
-
-
-.hero-image img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
+        rgba(6, 19, 28, 0.30);
 
 }
 
@@ -1201,14 +1202,24 @@ main {
 
     .hero {
 
-        grid-template-columns: 1fr;
+        width: 100%;
 
-        padding-top: 45px;
+        height: 560px;
+
+        padding: 0;
 
     }
 
 
     .hero-content {
+
+        width: 90%;
+
+        max-width: 600px;
+
+        margin-right: auto;
+
+        margin-left: auto;
 
         text-align: center;
 
@@ -1242,9 +1253,9 @@ main {
 
     .hero-image {
 
-        height: 400px;
+        width: 100%;
 
-        order: -1;
+        height: 100%;
 
     }
 
@@ -1272,10 +1283,18 @@ main {
 
     .hero {
 
-        width: 92%;
+        width: 100%;
 
-        padding:
-            35px 0;
+        height: 650px;
+
+        padding: 0;
+
+    }
+
+
+    .hero-content {
+
+        width: 90%;
 
     }
 
@@ -1311,9 +1330,9 @@ main {
 
     .hero-image {
 
-        height: 300px;
+        width: 100%;
 
-        border-radius: 20px;
+        height: 100%;
 
     }
 
@@ -1372,4 +1391,11 @@ main {
 
     }
 
+}
+
+.navbar .logo img {
+    width: 900px !important;
+    max-width: none !important;
+    height: 500px !important;
+    transform: translateY(8px);
 }
